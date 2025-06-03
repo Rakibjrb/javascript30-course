@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>JS + CSS Clock</title>
+
+    <style>
+      html {
+        background: linear-gradient(#018ded, #018fed7c);
+        background-size: cover;
+        font-family: "helvetica neue";
+        text-align: center;
+        font-size: 10px;
+      }
+
+      body {
+        margin: 0;
+        font-size: 2rem;
+        display: flex;
+        flex: 1;
+        min-height: 100vh;
+        align-items: center;
+      }
+
+      .clock {
+        width: 30rem;
+        height: 30rem;
+        border: 20px solid rgba(255, 255, 255, 0.507);
+        border-radius: 50%;
+        margin: 50px auto;
+        position: relative;
+        padding: 2rem;
+        box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1), inset 0 0 0 3px #ffffff,
+          inset 0 0 10px black, 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .clock-face {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transform: translateY(
+          -3px
+        ); /* account for the height of the clock hands */
+      }
+
+      .hand {
+        width: 35%;
+        height: 6px;
+        background: black;
+        position: absolute;
+        top: 50%;
+        left: 15%;
+        transform-origin: 100%;
+        transform: rotate(90deg);
+        border-radius: 5px;
+      }
+
+      .min-hand {
+        width: 30%;
+        height: 8px;
+        left: 20%;
+      }
+      .hour-hand {
+        width: 25%;
+        height: 10px;
+        left: 25%;
+      }
+
+      .digits {
+        position: relative;
+        font-size: 40px;
+        width: 100%;
+        height: 100%;
+        z-index: 10;
+        color: white;
+      }
+
+      .top {
+        position: absolute;
+        top: 0;
+        left: 44%;
+      }
+      .right {
+        position: absolute;
+        top: 44%;
+        right: 0;
+      }
+      .bottom {
+        position: absolute;
+        bottom: 0;
+        left: 44%;
+      }
+      .left {
+        position: absolute;
+        left: 0;
+        top: 44%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="clock">
+      <div class="clock-face">
+        <div class="digits">
+          <div class="top">12</div>
+          <div class="right">3</div>
+          <div class="bottom">6</div>
+          <div class="left">9</div>
+        </div>
+        <div class="hand hour-hand"></div>
+        <div class="hand min-hand"></div>
+        <div class="hand second-hand"></div>
+      </div>
+    </div>
+
+    <script>
+      // select clock time indicator hands
+      const second_hand = document.querySelector(".second-hand");
+      const minute_hand = document.querySelector(".min-hand");
+      const hour_hand = document.querySelector(".hour-hand");
+
+      function setTimeOnClock() {
+        const now = new Date(); // create date object
+
+        const seconds = now.getSeconds();
+        const minutes = now.getMinutes();
+        const hours = now.getHours();
+
+        // set second on clock
+        const secondsDegree = (seconds / 60) * 360 + 90;
+        second_hand.style.transform = `rotate(${secondsDegree}deg)`;
+
+        // set minute on clock
+        const minuteDegree = (minutes / 60) * 360 + (seconds / 60) * 6 + 90;
+        minute_hand.style.transform = `rotate(${minuteDegree}deg)`;
+
+        // set hours on clock
+        const hourDegree = (hours / 12) * 360 + (minutes / 60) * 30 + 90;
+        hour_hand.style.transform = `rotate(${hourDegree}deg)`;
+      }
+
+      setInterval(setTimeOnClock, 1000);
+    </script>
+  </body>
+</html>
