@@ -17,3 +17,5 @@ Grab the course at : [https://JavaScript30.com](https://JavaScript30.com)
 - 02 Day : (Tutorial Completed) I have changed the design of the clock added digits and customized time hand
 
   Live Link : [https://rakibul-js30-clock.netlify.app](https://rakibul-js30-clock.netlify.app)
+
+- 03 Day : (Tutorial Completed) with Project
